@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Creature Feature</name>
+    <directory>creature_feature</directory>
+    <id>3496771966</id>
+    <description></description>
+    <version>1.0</version>
+    <visibility>Private</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Player Characters"/>
+    <tag id="Graphics"/>
+    <itempools src="resources/itempools.xml"/>
+    <tag id="Trinkets"/>
+</metadata>
