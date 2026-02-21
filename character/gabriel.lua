@@ -33,7 +33,7 @@ end
 GabrielMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, GabrielMod.OnGabrielInit)
 
 -- =========================
--- UNCAPPED TEARS + BASE STATS
+-- CACHE: STATS + UNCAPPED TEARS
 -- =========================
 function GabrielMod:OnCache(player, cacheFlag)
     if player:GetPlayerType() ~= GABRIEL_TYPE then return end
@@ -42,28 +42,30 @@ function GabrielMod:OnCache(player, cacheFlag)
     -- DAMAGE
     if cacheFlag == CacheFlag.CACHE_DAMAGE then
         local reduction = data.AtropaxDamageDown or 0
-        -- Start from the player's normal damage (including all collectibles)
+        -- Add reduction to current player damage (includes collectibles)
         player.Damage = math.max(0.8, player.Damage + reduction)
     end
 
     -- SPEED
     if cacheFlag == CacheFlag.CACHE_SPEED then
-        player.MoveSpeed = 1.10
+        -- Base Gabriel bonus + additive to items
+        player.MoveSpeed = player.MoveSpeed + (1.10 - 1.0)
     end
 
     -- RANGE
     if cacheFlag == CacheFlag.CACHE_RANGE then
-        player.TearRange = 7.0 * 40
+        -- Add Gabriel base range bonus (scale for game units)
+        player.TearRange = player.TearRange + ((7.0 - 6.5) * 40)
     end
 
     -- SHOT SPEED
     if cacheFlag == CacheFlag.CACHE_SHOTSPEED then
-        player.ShotSpeed = 1.0
+        player.ShotSpeed = player.ShotSpeed + (1.0 - 1.0) -- no base bonus, safe additive
     end
 
     -- LUCK
     if cacheFlag == CacheFlag.CACHE_LUCK then
-        player.Luck = -0.5
+        player.Luck = player.Luck + (-0.5 - 0)
     end
 
     -- TRUE UNCAPPED TEARS
@@ -71,9 +73,9 @@ function GabrielMod:OnCache(player, cacheFlag)
         local baseTears = data.GabrielTears or 3.10
         local atropaxBonus = data.AtropaxTearsUp or 0
 
-        -- Calculate current tears from items
+        -- Calculate current tears from items (including vanilla bonuses)
         local currentTears = 30 / (player.MaxFireDelay + 1)
-        local finalTears = baseTears + atropaxBonus + (currentTears - 2.73) -- include vanilla item bonus
+        local finalTears = baseTears + atropaxBonus + (currentTears - 2.73)
 
         -- Set MaxFireDelay with no soft cap
         player.MaxFireDelay = math.max(0, 30 / finalTears - 1)
