@@ -43,7 +43,7 @@ function GabrielMod:OnCache(player, cacheFlag)
     if cacheFlag == CacheFlag.CACHE_DAMAGE then
         local reduction = data.AtropaxDamageDown or 0
         -- Add reduction to current player damage (includes collectibles)
-        player.Damage = math.max(0.8, player.Damage + reduction)
+        player.Damage = math.max(0.8, player.Damage + reduction) - 1
     end
 
     -- SPEED
