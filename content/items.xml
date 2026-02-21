@@ -1,6 +1,8 @@
 <items gfxroot="gfx/items/" deathanm2="gfx/death_items.anm2" version="1">
-    <active id="1"name="Hiking Boots" description="Time to retrace your steps" gfx="Hiking_Boots.png" maxcharges="0" quality="3" chargetype="normal" />
+    <active id="1" name="Hiking Boots" description="Time to retrace your steps" gfx="Hiking_Boots.png" maxcharges="0" quality="3" chargetype="normal" />
     <active id="2" name="6D" description="Reality, inverted." gfx="sixd.png" maxcharges="12" quality="4" chargetype="normal" />
+    <active id="3" name="Jam" description="Fruits are delicious!" gfx="Jam.png" maxcharges="2" quality="2" chargetype="normal" />
+    <active id="4" name="Aropax" description="it tears me up!" gfx="Aropax.png" maxcharges="0" quality="2" chargetype="normal" />
     <active id="6" maxcharges="90" name="Holy Outburst" chargetype="timed" description="Make a mess!" gfx="holy_outburst.png" tags="offensive" quality="4"/>
     <passive id="4" name="Blueberries" gfx="Blueberries.png" description="they taste like nothing!" quality="1" cache="all" />
     <passive id="3" name="Grease Spray" gfx="Grease_Spray.png" description="Never Slippery when wet" quality="3" cache="all"/>

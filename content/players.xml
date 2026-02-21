@@ -25,11 +25,21 @@
     <player name="Sarah"
         skin="character_gabriel.png"
         nameimage="playername_gabriel.png"
-        hp="8"
+        hp="4"
         armor="0"
         keys="1"
         bombs="2"
-        portrait="playerportrait_sarah.png"
+        portrait="playerportrait_gabriel.png"
+        skinColor="-1"
+    />
+    <player name="Duster"
+        skin="character_duster.png"
+        nameimage="playername_gabriel.png"
+        hp="8"
+        armor="0"
+        keys="1"
+        bombs="0"
+        portrait="playerportrait_gabriel.png"
         skinColor="-1"
     />
 
