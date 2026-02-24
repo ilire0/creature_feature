@@ -2,5 +2,6 @@
 
     <costume anm2path="gabriel_hair.anm2" type="none" priority="100" />
     <costume anm2path="gabriel_stoles.anm2" type="none" priority="100" />
+    <costume anm2path="duster.anm2" type="none" priority="100" />
 
 </costumes>

@@ -1,11 +1,11 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="4/26/2023 4:46:45 PM" Version="111" Fps="30"/>
+	<Info CreatedBy="Joffe" CreatedOn="22.02.2026 22:08:35" Version="116" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="full_head.png" Id="0"/>
+			<Spritesheet Path="costumes\duster_hair.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
-			<Layer Name="head" Id="0" SpritesheetId="0"/>
+			<Layer Name="head1" Id="0" SpritesheetId="0"/>
 		</Layers>
 		<Nulls/>
 		<Events/>

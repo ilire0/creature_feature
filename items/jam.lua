@@ -21,10 +21,10 @@ function Mod:OnUseJam(itemID, rng, player, flags, slot)
         direction = Vector(0, 1)
     end
 
-    -- Spawn flying jar effect
+    -- Spawn a custom effect
     local jar = Isaac.Spawn(
         EntityType.ENTITY_EFFECT,
-        EffectVariant.BRIMSTONE_SWIRL,
+        EffectVariant.BRIMSTONE_SWIRL, -- Use a generic effect variant as placeholder
         0,
         player.Position,
         direction:Resized(13),
@@ -34,7 +34,12 @@ function Mod:OnUseJam(itemID, rng, player, flags, slot)
     if jar then
         jar.SpriteScale = Vector(1, 1)
         jar.Scale = 1
-        jar.Color = Color(1, 0.2, 0.2, 1, 0, 0, 0)
+
+        -- Replace sprite with custom animation
+        local sprite = jar:GetSprite()
+        sprite:Load("gfx/effects/jam.anm2", true) -- <-- your jam.anm2
+        sprite:Play("Idle")                       -- Make sure your .anm2 has an 'Idle' animation
+
         local data = jar:GetData()
         data.Owner = player
         data.IsJamJar = true

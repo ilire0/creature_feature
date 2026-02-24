@@ -3,19 +3,41 @@ local game = Game()
 
 -- Character ID
 local DusterType = Isaac.GetPlayerTypeByName("Duster", false)
-local hairCostume = Isaac.GetCostumeIdByPath("gfx/characters/duster_head.png")
 -- Starting Item (Jam)
 local JamID = Isaac.GetItemIdByName("Jam")
 
 -------------------------------------------------
--- DUSTER INIT (COSTUME)
+-- DUSTER INIT (COSTUME & ITEMS)
 -------------------------------------------------
 function Mod:OnDusterInit(player)
-    if player:GetPlayerType() == DusterType then
+    if player:GetPlayerType() ~= DusterType then return end
+
+    -- 1. APPLY COSTUME
+    -- This path must match exactly: anm2root + anm2path from your XML
+    local hairCostume = Isaac.GetCostumeIdByPath("gfx/characters/duster.anm2")
+
+    if hairCostume ~= -1 then
         player:AddNullCostume(hairCostume)
+    else
+        -- If this prints, the game can't see "gfx/characters/duster.anm2" in your costumes2.xml
+        Isaac.ConsoleOutput("Error: Duster costume not found at gfx/characters/duster.anm2\n")
+    end
+
+    -- 2. GIVE STARTING ITEM (Only on new runs)
+    if game:GetFrameCount() == 0 then
+        if not player:HasCollectible(JamID) then
+            player:AddCollectible(JamID, 0, true)
+        end
+
+        -- Fully charge Jam
+        local config = Isaac.GetItemConfig():GetCollectible(JamID)
+        if config then
+            player:SetActiveCharge(config.MaxCharges, ActiveSlot.SLOT_PRIMARY, true)
+        end
     end
 end
 
+-- CRITICAL: You must register the callback for the function to run!
 Mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, Mod.OnDusterInit)
 
 -------------------------------------------------
