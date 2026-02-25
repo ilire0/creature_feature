@@ -1,4 +1,4 @@
-local Mod = RegisterMod("CF", 1)
+local Mod = CF
 local game = Game()
 
 -- Character ID
@@ -61,23 +61,49 @@ end
 Mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, Mod.OnPlayerInit)
 
 -------------------------------------------------
--- BASE STATS
+-- BASE STATS (Item Compatible)
 -------------------------------------------------
+
+local ISAAC_BASE_DAMAGE = 3.5
+local ISAAC_BASE_SPEED = 1.0
+local ISAAC_BASE_SHOTSPEED = 1.0
+local ISAAC_BASE_LUCK = 0
+local ISAAC_BASE_FIREDELAY = (30 / 2.73) - 1
+local ISAAC_BASE_RANGE = 260
+
+-- Duster desired base stats
+local DUSTER_DAMAGE = 3.40
+local DUSTER_SPEED = 1.10
+local DUSTER_SHOTSPEED = 1.10
+local DUSTER_LUCK = 1
+local DUSTER_FIREDELAY = (30 / 2.85) - 1
+local DUSTER_RANGE = 6.60 * 40 -- matches your design
+
 function Mod:EvaluateCache(player, cacheFlag)
     if player:GetPlayerType() ~= DusterType then return end
 
     if cacheFlag == CacheFlag.CACHE_SPEED then
-        player.MoveSpeed = 1.10
-    elseif cacheFlag == CacheFlag.CACHE_DAMAGE then
-        player.Damage = 3.40
-    elseif cacheFlag == CacheFlag.CACHE_FIREDELAY then
-        player.MaxFireDelay = 9 -- Tears ~2.85
-    elseif cacheFlag == CacheFlag.CACHE_RANGE then
-        player.TearRange = 6.60 * 40
-    elseif cacheFlag == CacheFlag.CACHE_SHOTSPEED then
-        player.ShotSpeed = 1.10
-    elseif cacheFlag == CacheFlag.CACHE_LUCK then
-        player.Luck = 1
+        player.MoveSpeed = player.MoveSpeed - ISAAC_BASE_SPEED + DUSTER_SPEED
+    end
+
+    if cacheFlag == CacheFlag.CACHE_DAMAGE then
+        player.Damage = player.Damage - ISAAC_BASE_DAMAGE + DUSTER_DAMAGE
+    end
+
+    if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+        player.MaxFireDelay = player.MaxFireDelay - ISAAC_BASE_FIREDELAY + DUSTER_FIREDELAY
+    end
+
+    if cacheFlag == CacheFlag.CACHE_RANGE then
+        player.TearRange = player.TearRange - ISAAC_BASE_RANGE + DUSTER_RANGE
+    end
+
+    if cacheFlag == CacheFlag.CACHE_SHOTSPEED then
+        player.ShotSpeed = player.ShotSpeed - ISAAC_BASE_SHOTSPEED + DUSTER_SHOTSPEED
+    end
+
+    if cacheFlag == CacheFlag.CACHE_LUCK then
+        player.Luck = player.Luck - ISAAC_BASE_LUCK + DUSTER_LUCK
     end
 end
 

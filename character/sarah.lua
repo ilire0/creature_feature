@@ -1,4 +1,4 @@
-local SarahMod = RegisterMod("CF", 1)
+local SarahMod = CF
 local game = Game()
 
 -- Replace with your actual character ID
@@ -23,6 +23,40 @@ local function IsCombatRoom(room)
         or roomType == RoomType.ROOM_BOSSRUSH
 end
 
+
+-------------------------------------------------
+-- SARAH BASE STATS (Item-Compatible)
+-------------------------------------------------
+
+function SarahMod:OnCache(player, cacheFlag)
+    if not IsSarah(player) then return end
+
+    if cacheFlag == CacheFlag.CACHE_SPEED then
+        -- Isaac base = 1.0
+        player.MoveSpeed = player.MoveSpeed - 1.0 + 0.8
+    end
+
+    if cacheFlag == CacheFlag.CACHE_DAMAGE then
+        -- Isaac base = 3.5
+        player.Damage = player.Damage - 3.5 + 3.75
+    end
+
+    if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+        local currentTears = 30 / (player.MaxFireDelay + 1)
+        local adjustedTears = currentTears + (3.25 - 2.73)
+
+        player.MaxFireDelay = math.max(0, 30 / adjustedTears - 1)
+    end
+
+    if cacheFlag == CacheFlag.CACHE_RANGE then
+        -- Isaac base range values
+        player.TearHeight = player.TearHeight - (-23.75) + (-23.75)
+        player.TearRange = player.TearRange - 260 + 160
+    end
+end
+
+SarahMod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, SarahMod.OnCache)
+
 -------------------------------------------------
 -- SARAH STARTS WITH 6D (FULLY CHARGED)
 -------------------------------------------------
@@ -40,6 +74,10 @@ function SarahMod:OnPlayerInit(player)
 
         local maxCharges = Isaac.GetItemConfig():GetCollectible(SixDID).MaxCharges
         player:SetActiveCharge(maxCharges, ActiveSlot.SLOT_PRIMARY)
+
+        -- Force stat update
+        player:AddCacheFlags(CacheFlag.CACHE_ALL)
+        player:EvaluateItems()
     end
 end
 
@@ -51,7 +89,20 @@ SarahMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SarahMod.OnPlayerInit)
 
 function SarahMod:OnNewFloor()
     usedTrinketsThisFloor = {}
-    clearedRoomsPerPlayer = {} -- reset room charge tracker
+    clearedRoomsPerPlayer = {}
+
+    for i = 0, game:GetNumPlayers() - 1 do
+        local player = Isaac.GetPlayer(i)
+        if IsSarah(player) then
+            -- Remove slot 1 first (Belly Button slot)
+            for slot = 1, 0, -1 do
+                local trinket = player:GetTrinket(slot)
+                if trinket ~= 0 then
+                    player:TryRemoveTrinket(trinket)
+                end
+            end
+        end
+    end
 end
 
 SarahMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SarahMod.OnNewFloor)

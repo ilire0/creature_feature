@@ -1,40 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ItemPools>
 
-    <Pool Name="treasure">
-        <Item Name="The Button" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool> 
-
-    <Pool Name="boss">
-        <Item Name="Allfather Worm" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="devil">
-        <Item Name="Duality Mirror" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="angel">
-        <Item Name="Duality Mirror" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="shop">
-        <Item Name="Chirping Alarm" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="secret">
-        <Item Name="Loaded Die" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="curse">
-        <Item Name="Loaded Die" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="ultraSecret">
-        <Item Name="Loaded Die" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
-
-    <Pool Name="goldenChest">
-        <Item Name="Chirping Alarm" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
-    </Pool>
 
 </ItemPools>

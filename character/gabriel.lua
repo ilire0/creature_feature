@@ -1,4 +1,4 @@
-local GabrielMod = RegisterMod("CF", 1)
+local GabrielMod = CF
 local game = Game()
 
 local GABRIEL_TYPE = Isaac.GetPlayerTypeByName("Gabriel", false)
@@ -69,16 +69,16 @@ function GabrielMod:OnCache(player, cacheFlag)
     end
 
     -- TRUE UNCAPPED TEARS
-    if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-        local baseTears = data.GabrielTears or 3.10
-        local atropaxBonus = data.AtropaxTearsUp or 0
+    if cacheFlag == CacheFlag.CACHE_FIREDELAY and player:GetPlayerType() == GABRIEL_TYPE then
+        local baseTears = player:GetData().GabrielTears or 3.10
+        local atropaxBonus = player:GetData().AtropaxTearsUp or 0
 
-        -- Calculate current tears from items (including vanilla bonuses)
+        -- current tears from items
         local currentTears = 30 / (player.MaxFireDelay + 1)
         local finalTears = baseTears + atropaxBonus + (currentTears - 2.73)
 
-        -- Set MaxFireDelay with no soft cap
-        player.MaxFireDelay = math.max(0, 30 / finalTears - 1)
+        -- set MaxFireDelay with no soft cap, allow negatives for very high rate
+        player.MaxFireDelay = 30 / finalTears - 1
     end
 end
 

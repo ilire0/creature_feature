@@ -1,6 +1,5 @@
-RegisterMod("CF", 1)
+CF = RegisterMod("CF", 1)
 
-print("CF MOD LOADED")
 require("character.sarah")
 require("character.gabriel")
 require("character.duster")
