@@ -30,7 +30,6 @@ local function GetRoomItemPool()
     local room = game:GetRoom()
     local roomDesc = level:GetCurrentRoomDesc()
 
-    -- Greed mode special handling
     if game:IsGreedMode() then
         if room:GetType() == RoomType.ROOM_SHOP then
             return ItemPoolType.POOL_GREED_SHOP
@@ -93,6 +92,24 @@ function SarahMod:UseSixD(_, rng, player, flags, slot)
     local itemPool = game:GetItemPool()
     local poolType = GetRoomItemPool()
 
+    -------------------------------------------------
+    -- SMELT ALL HELD TRINKETS (SAFE METHOD)
+    -------------------------------------------------
+    for i = 0, game:GetNumPlayers() - 1 do
+        local p = Isaac.GetPlayer(i)
+
+        for trinketSlot = 0, 1 do
+            if p:GetTrinket(trinketSlot) ~= 0 then
+                p:UseActiveItem(
+                    CollectibleType.COLLECTIBLE_SMELTER,
+                    UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
+                    -1
+                )
+            end
+        end
+    end
+    -------------------------------------------------
+
     local isShop = room:GetType() == RoomType.ROOM_SHOP
     local isDevilAngel = room:GetType() == RoomType.ROOM_DEVIL or room:GetType() == RoomType.ROOM_ANGEL
     local isSpecialShop = isShop or isDevilAngel
@@ -103,11 +120,8 @@ function SarahMod:UseSixD(_, rng, player, flags, slot)
         if pickup and pickup:Exists() then
             local position = pickup.Position
             local originalPrice = pickup.Price
-            local priceType = pickup.Cost -- 0 = coins, 1 = hearts, 2 = keys, 3 = bombs
 
-            -- ==============================
             -- COLLECTIBLE → TRINKET
-            -- ==============================
             if pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE then
                 local collectibleID = pickup.SubType
 
@@ -124,16 +138,13 @@ function SarahMod:UseSixD(_, rng, player, flags, slot)
                         player
                     ):ToPickup()
 
-                    -- Keep it buyable in shops/devil/angel rooms
                     if isSpecialShop then
                         trinket.Price = originalPrice
                         trinket.AutoUpdatePrice = true
                     end
                 end
 
-                -- ==============================
                 -- TRINKET → COLLECTIBLE
-                -- ==============================
             elseif pickup.Variant == PickupVariant.PICKUP_TRINKET then
                 pickup:Remove()
 
@@ -148,7 +159,6 @@ function SarahMod:UseSixD(_, rng, player, flags, slot)
                         player
                     ):ToPickup()
 
-                    -- Keep it buyable in shops/devil/angel rooms
                     if isSpecialShop then
                         spawned.Price = originalPrice
                         spawned.AutoUpdatePrice = true

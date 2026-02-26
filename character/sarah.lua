@@ -6,23 +6,11 @@ local SarahType = Isaac.GetPlayerTypeByName("Sarah", false)
 
 -- Cache tables
 local usedTrinketsThisFloor = {}
-local clearedRoomsPerPlayer = {} -- Tracks which players have received charge in each room
 
 -- Utility: Check if player is Sarah
 local function IsSarah(player)
     return player:GetPlayerType() == SarahType
 end
-
--- Utility: Check if a room is a combat room
-local function IsCombatRoom(room)
-    local roomType = room:GetType()
-    return roomType == RoomType.ROOM_DEFAULT
-        or roomType == RoomType.ROOM_CHALLENGE
-        or roomType == RoomType.ROOM_BOSS
-        or roomType == RoomType.ROOM_MINIBOSS
-        or roomType == RoomType.ROOM_BOSSRUSH
-end
-
 
 -------------------------------------------------
 -- SARAH BASE STATS (Item-Compatible)
@@ -89,7 +77,6 @@ SarahMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SarahMod.OnPlayerInit)
 
 function SarahMod:OnNewFloor()
     usedTrinketsThisFloor = {}
-    clearedRoomsPerPlayer = {}
 
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
@@ -272,48 +259,3 @@ end
 
 -- Register callback for Devil/Angel rooms
 SarahMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SarahMod.ReplaceDealsWithTrinketLimit)
-
--------------------------------------------------
--- DOUBLE ROOM CLEAR CHARGE (SARAH ONLY)
--------------------------------------------------
-
-function SarahMod:PostUpdate()
-    -- Check if there is at least one Sarah
-    local sarahFound = false
-    for i = 0, game:GetNumPlayers() - 1 do
-        if IsSarah(Isaac.GetPlayer(i)) then
-            sarahFound = true
-            break
-        end
-    end
-    if not sarahFound then return end -- no Sarah, exit
-
-    local room = game:GetRoom()
-    if not room:IsClear() then return end
-    if not IsCombatRoom(room) then return end
-
-    local level = game:GetLevel()
-    local currentRoomIndex = level:GetCurrentRoomIndex()
-
-    if not clearedRoomsPerPlayer[currentRoomIndex] then
-        clearedRoomsPerPlayer[currentRoomIndex] = {}
-    end
-
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        if IsSarah(player) and not clearedRoomsPerPlayer[currentRoomIndex][i] then
-            local slot = ActiveSlot.SLOT_PRIMARY
-            local activeItem = player:GetActiveItem(slot)
-            if activeItem ~= 0 then
-                local currentCharge = player:GetActiveCharge(slot)
-                local maxCharge = Isaac.GetItemConfig():GetCollectible(activeItem).MaxCharges
-                if currentCharge < maxCharge then
-                    player:SetActiveCharge(currentCharge + 1, slot)
-                end
-            end
-            clearedRoomsPerPlayer[currentRoomIndex][i] = true
-        end
-    end
-end
-
-SarahMod:AddCallback(ModCallbacks.MC_POST_UPDATE, SarahMod.PostUpdate)

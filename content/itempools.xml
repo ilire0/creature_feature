@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ItemPools>
+    <Pool Name="treasure">
+        <Item Name="Grease Spray" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Hiking Boots" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Jam" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool> 
+    <Pool Name="boss">
+        <item Name="Blueberry"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool> 
+    <Pool Name="devil">
+         <item Name="Demon Head"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="shop">
+        <item Name="Jam"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <item Name="Blueberry"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="secret">
+        <Item Name="6D" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    
+    </Pool>
+    <Pool Name="curse">
+        <Item Name="Demon Head" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+       
+    </Pool>
+    <Pool Name="ultraSecret">
+        <Item Name="6D" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+       
+    </Pool>
 
+    <Pool Name="goldenChest">
+        <Item Name="Grease Spray" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Hiking Boots" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Jam" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+         <item Name="Blueberry"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
 
 </ItemPools>
