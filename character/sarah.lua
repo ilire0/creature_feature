@@ -3,6 +3,7 @@ local game = Game()
 
 -- Replace with your actual character ID
 local SarahType = Isaac.GetPlayerTypeByName("Sarah", false)
+local hairCostume = Isaac.GetCostumeIdByPath("gfx/characters/sarah_head.anm2")
 
 -- Cache tables
 local usedTrinketsThisFloor = {}
@@ -11,6 +12,14 @@ local usedTrinketsThisFloor = {}
 local function IsSarah(player)
     return player:GetPlayerType() == SarahType
 end
+
+function SarahMod:OnSarahInit(player)
+    if player:GetPlayerType() == SarahType then
+        player:AddNullCostume(hairCostume)
+    end
+end
+
+SarahMod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SarahMod.OnSarahInit)
 
 -------------------------------------------------
 -- SARAH BASE STATS (Item-Compatible)
