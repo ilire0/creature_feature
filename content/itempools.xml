@@ -7,6 +7,11 @@
     </Pool> 
     <Pool Name="boss">
         <item Name="Blueberry"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <item Name="A Slice of Cheddar"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <item Name="Apple Juice"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <item Name="Shoyu"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <item Name="Pastafarianism"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <item Name="Fleur-de-lis"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool> 
     <Pool Name="devil">
          <item Name="Demon Head"  Weight="1" DecreaseBy="1" RemoveOn="0.1" />
