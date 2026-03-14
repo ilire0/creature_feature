@@ -4,6 +4,7 @@ local game = Game()
 -- Replace with your actual character ID
 local SarahType = Isaac.GetPlayerTypeByName("Sarah", false)
 local hairCostume = Isaac.GetCostumeIdByPath("gfx/characters/sarah_head.anm2")
+local bodyCostume = Isaac.GetCostumeIdByPath("gfx/characters/sarah_body.anm2")
 
 -- Cache tables
 local usedTrinketsThisFloor = {}
@@ -15,6 +16,7 @@ end
 
 function SarahMod:OnSarahInit(player)
     if player:GetPlayerType() == SarahType then
+        player:AddNullCostume(bodyCostume)
         player:AddNullCostume(hairCostume)
     end
 end
