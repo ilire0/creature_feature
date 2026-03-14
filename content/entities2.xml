@@ -1,0 +1,3 @@
+<entities anm2root="gfx/" version="5">
+    <entity name="Lil' Spaghetti Monster" id="3" anm2path="wip" tags="cansacrifice" shadowSize="11" friction="1"/>
+</entities>
