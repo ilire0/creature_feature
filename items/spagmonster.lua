@@ -49,7 +49,20 @@ function spaghettiMonsterMod:UpdateMonster(familiar)
 
     if dir ~= nil and (familiar.FireCooldown <= 0 or (familiar.FireCooldown == player.MaxFireDelay and player:GetShootingInput() ~= Vector.Zero and player:CanShoot())) then
         local velocity = dir * tearSpeed + player:GetTearMovementInheritance(dir)
-        local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLOOD, 0, familiar.Position, velocity, familiar):ToTear()
+        local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, Isaac.GetEntityVariantByName("Meatball Tear"), 0, familiar.Position, velocity, familiar):ToTear()
+        local tearSprite = tear:GetSprite()
+        local spriteScale = math.max(math.floor(player.Damage * 0.4), 1)
+        if spriteScale <= 1 then
+            tearSprite:Load("gfx/entities/meatball_tear.anm2", true)
+            tearSprite:Play("RegularTear1", true)
+        elseif spriteScale >= 13 then
+            tearSprite:Load("gfx/entities/meatball_tear.anm2", true)
+            tearSprite:Play("RegularTear13", true)
+        else
+            tearSprite:Load("gfx/entities/meatball_tear.anm2", true)
+            tearSprite:Play("RegularTear" .. math.tointeger(spriteScale), true)
+        end
+
         tear.CollisionDamage = player.Damage * 0.25
         sprite.FlipX = doFlip
         sprite:Play(shootAnim, true)
