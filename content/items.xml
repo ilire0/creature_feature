@@ -17,6 +17,7 @@
     <passive id="13" name="Fleur-de-lis"  description="Stop drinking that!" gfx="Fleur-de-lis.png" quality="2" maxhearts="2" hearts="2" cache="speed shotspeed"/>
     <passive id="14" name="Pastafarianism"  description="Touched by his noodly appendage" gfx="Pastafarianism.png" quality="3" maxhearts="2" hearts="2" cache="damage"/>
     <passive id="15" name="Shoyu"  description="DMG + speed up" gfx="Shoyu.png" quality="3" cache="damage speed"/>
+    <passive id="16" name="Pomegranate"  description="Delicious and nutritious!" gfx="pomegranate.png" quality="3" cache="all"/>
     <familiar name="Lil' Spaghetti Monster"  description="Noodly appendages of your own!" gfx="Lil_Spaghetti_Monster.png" quality="3" cache="familiars" tags="baby offensive summonable monstermanual"/>
 
 </items>
