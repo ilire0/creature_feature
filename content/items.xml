@@ -10,7 +10,6 @@
     <passive id="5" name="Blueberries" gfx="Blueberries.png" description="they taste like nothing!" quality="1" cache="all" />
     <passive id="7" name="Grease Spray" gfx="Grease_Spray.png" description="Never Slippery when wet" quality="3" cache="all"/>
     <passive id="8" name="Demon Head"  description="Short ranged demonic burst tears" gfx="DemonHead.png" quality="3"cache="all"/>
-    <trinket id="31" name="Fragment of Sol" description="Sun-Kissed" gfx="fragment_of_sol.png" cache="all"/>
     <passive id="10" name="A Slice of Cheddar"  description="DMG + shot speed up" gfx="A_Slice_of_Cheddar.png" quality="2"cache="damage shotspeed"/>
     <passive id="11" name="Apple Juice"  description="Speed + range up" gfx="Apple_Juice.png" quality="2"cache="speed range"/>
     <passive id="12" name="Rotten Flesh"  description="Did you get sick?" gfx="Rotten_Flesh.png" quality="0" maxhearts="-2"/>
@@ -18,6 +17,7 @@
     <passive id="14" name="Pastafarianism"  description="Touched by his noodly appendage" gfx="Pastafarianism.png" quality="3" maxhearts="2" hearts="2" cache="damage"/>
     <passive id="15" name="Shoyu"  description="DMG + speed up" gfx="Shoyu.png" quality="3" cache="damage speed"/>
     <passive id="16" name="Pomegranate"  description="Delicious and nutritious!" gfx="pomegranate.png" quality="3" cache="all"/>
+    <passive id="17" name="Cigarette Bud"  description="OW my Eye T-T !" gfx="cig_bud.png" quality="1" cache="all"/>
     <familiar name="Lil' Spaghetti Monster"  description="Noodly appendages of your own!" gfx="Lil_Spaghetti_Monster.png" quality="3" cache="familiars" tags="baby offensive summonable monstermanual"/>
-
+    <trinket id="31" name="Fragment of Sol" description="Sun-Kissed" gfx="fragment_of_sol.png" cache="all"/>
 </items>
