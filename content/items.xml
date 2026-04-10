@@ -16,9 +16,8 @@
     <passive id="13" name="Fleur-de-lis"  description="Stop drinking that!" gfx="Fleur-de-lis.png" quality="2" maxhearts="2" hearts="2" cache="speed shotspeed"/>
     <passive id="14" name="Pastafarianism"  description="Touched by his noodly appendage" gfx="Pastafarianism.png" quality="3" maxhearts="2" hearts="2" cache="damage"/>
     <passive id="15" name="Shoyu"  description="DMG + speed up" gfx="Shoyu.png" quality="3" cache="damage speed"/>
-    <passive id="16" name="Pomegranate"  description="Delicious and nutritious!" gfx="pomegranate.png" quality="3" cache="all"/>
+    <passive id="16" name="Pomegranate"  description="Kill them All!" gfx="pomegranate.png" quality="3" cache="all"/>
     <passive id="17" name="Cigarette Bud"  description="OW my Eye T-T !" gfx="cig_bud.png" quality="1" cache="all"/>
-    <passive id="18" name="Rotten Meat"  description="It smells like death!" gfx="Rotten_Flesh.png" quality="0" cache="all"/>
     <familiar name="Lil' Spaghetti Monster"  description="Noodly appendages of your own!" gfx="Lil_Spaghetti_Monster.png" quality="3" cache="familiars" tags="baby offensive summonable monstermanual"/>
     <trinket id="31" name="Fragment of Sol" description="Sun-Kissed" gfx="fragment_of_sol.png" cache="all"/>
 </items>
