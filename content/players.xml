@@ -9,26 +9,5 @@
         portrait="playerportrait_gabriel.png"
         skinColor="-1"
     />
-    <player name="Sarah"
-        skin="Character_Sarah.png"
-        nameimage="playername_gabriel.png"
-        hp="2"
-        armor="6"
-        keys="1"
-        bombs="0"
-        portrait="playerportrait_gabriel.png"
-        skinColor="-1"
-        items="458"
-    />
-    <player name="Duster"
-        skin="character_duster.png"
-        nameimage="playername_gabriel.png"
-        hp="8"
-        armor="0"
-        keys="1"
-        bombs="0"
-        portrait="playerportrait_gabriel.png"
-        skinColor="-1"
-    />
 
 </players>
